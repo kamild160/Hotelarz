@@ -26,11 +26,11 @@
 		</div>
 		<div class="nav">
 			<ol>
+			<li>
 			<li><a href="index.html">Strona Główna</a></li>
-				<li><a href="dodaj.html">Dodaj usługę</a></li>
-				<li><a href="rezerwacje.html">Rezerwacje</a></li>
-				
-				<li><a href="#"><i class="icon-mail"></i>Kontakt</a></li>
+			<li><a href="dodaj.html">Dodaj Rezerwację</a></li>
+				<li><a href="rezerwacje.html"> Znajdź rezerwację</a></li>
+				<li><a href="edytuj.html"> Edytuj rezerwację</a></li>
 			</ol>
 		</div>
 		<div class="content">
@@ -59,22 +59,7 @@
                <center>Aby wrócić do dodawania kliknij <a href="dodaj.html"> tutaj.</a> </center>
 			</p>
 		</div>
-		<div class="footer">
-			<div id="stopki">
-				<div class="stopka1">
-					hotel_support.pl &copy;
-				</div>
-			
-				<div class="stopka3">
-					Tel: 123-456-789
-				</div>
-				<div class="stopka4">
-					Karmazynowa 155/2 
-				</div>
-				<div style="clear: both;"></div>
-			</div>
-			
-		</div>
+		
 		
 	</div>
 	

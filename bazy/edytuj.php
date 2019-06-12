@@ -26,11 +26,10 @@
 		</div>
 		<div class="nav">
 			<ol>
-			
-			<li><a href="index.html">Strona Główna</a></li>
+                <li><a href="index.html">Strona Główna</a></li>
 			<li><a href="dodaj.html">Dodaj Rezerwację</a></li>
-				<li><a href="rezerwacje.html"> Znajdź rezerwację</a></li>
-				<li><a href="edytuj.html"> Edytuj rezerwację</a></li>
+            <li><a href="rezerwacje.html"> Znajdź rezerwację</a></li>
+            <li><a href="edytuj.html"> Edytuj rezerwację</a></li>
 			</ol>
 		</div>
 		<div class="content">
@@ -49,58 +48,34 @@
                     die("Connection failed: " . $conn -> connect_error);
                 }
 				echo "<center> Connected successfully </center>";
-				
-				$imie = $_POST['imie'];
-                $nazwisko = $_POST['nazwisko'];
-                $Pesel = $_POST['pesel'];
-                $datapocz = $_POST['datapocz'];
-				$datakon = $_POST['datakon'];
-				$tel = $_POST['tel'];
-				$idg = $_POST['idg'];
-				$nrpokoj = $_POST['nrpokoj'];
-				$losob = $_POST['losob'];
-				$rezerwacja = $_POST['rezerwacja'];
-				$oplacono = $_POST['oplacono'];
-				$idp = $_POST['idp'];
-				
+                
+               
+                $datakon= $_REQUEST['datakon'];
+                $datapocz= $_REQUEST['datapocz'];
+                $rezerwacja = $_REQUEST['nrrezerwacj'];
+                
+                
+                $sql = "UPDATE pobyt SET datakon='".$datakon."' WHERE nrrezerwacja like '%".$rezerwacja."%'";
 
-					$sql = "INSERT INTO gosc(idg,imie,nazwisko,pesel,telefon)
-					VALUES
-					('$idg','$imie','$nazwisko','$Pesel','$tel')";
-
-						if ($conn->query($sql) === TRUE) {
-							echo "Dodano nowego gościa";
-						} else {
-							echo "Error: " . $sql . "<br>" . $conn->error;
-						}
-
-
-					$sql2 = "INSERT INTO pobyt(idp,g_id,datapocz,datakon,nrpokoj,liczba_osob,oplacono,nrrezerwacja)
-					VALUES
-					('$idg','$idg','$datapocz','$datakon','$nrpokoj','$losob','$oplacono','$rezerwacja')";
-
-
-					if ($conn->query($sql2) === TRUE) {
-							echo " i datę rezerwacji ";
-						} else {
-							echo "Error: " . $sql . "<br>" . $conn->error;
-						}
-			
-					
-					
-					
-				
-					
-					
-				
-					
-					
+                    if ($conn->query($sql) === TRUE) {
+                        echo "Zaktualizowano";
+                    } else {
+                        echo "Error updating record: " . $conn->error;
+                    }
+                
+                $sql2 = "UPDATE pobyt SET datapocz='".$datapocz."' WHERE nrrezerwacja like '%".$rezerwacja."%'";
+                
+                if ($conn->query($sql2) === TRUE) {
+                        echo " dane";
+                    } else {
+                        echo "Error updating record: " . $conn->error;
+                    }
 
                 mysqli_close($conn);
 				
             ?>
 
-               <center>Aby wrócić do dodawania kliknij <a href="dodaj.html"> tutaj.</a> </center>
+               <center>Aby wrócić do dodawania kliknij <a href="edytuj.html"> tutaj.</a> </center>
 			</p>
 		</div>
 

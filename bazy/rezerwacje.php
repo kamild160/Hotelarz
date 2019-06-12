@@ -35,10 +35,9 @@
 		<div class="nav">
 			<ol>
 			<li><a href="index.html">Strona Główna</a></li>
-				<li><a href="dodaj.html">Dodaj usługę</a></li>
-				<li><a href="rezerwacje.html">Rezerwacje</a></li>
-				
-				<li><a href="#"><i class="icon-mail"></i>Kontakt</a></li>
+				<li><a href="dodaj.html">Dodaj Rezerwację</a></li>
+				<li><a href="rezerwacje.html"> Znajdź rezerwację</a></li>
+				<li><a href="edytuj.html"> Edytuj rezerwację</a></li>
 			</ol>
 		</div>
 		<div class="content">
@@ -46,7 +45,7 @@
 			<div style="clear: both;"></div>
 			<p>
             <?php
-               $servername = "localhost";
+			  
 			   $username = "kamild160";
 			   $password = "aidaiY6aeyah";
 			   $dbname = "kamild160_projekt";
@@ -57,30 +56,50 @@
                     die("Connection failed: " . $conn -> connect_error);
                 }
                 echo "<center> Connected successfully </br></br></br></br></center>";
+				$conn->set_charset("utf8"); 
+				
+               	$imie = $_REQUEST['imie']; 
+				$nazwisko = $_REQUEST['nazwisko'];
+				$telefon = $_REQUEST['tel'];
+				$rezerwacja = $_REQUEST['nrrezerwacj'];
 
-               
 
+				$imiein = $_REQUEST['imiein']; 
+				$nazwiskoin = $_REQUEST['nazwiskoin'];
+				$telefonin = $_REQUEST['telin'];
+				
+
+				$sql = "SELECT * from gosc join pobyt on idg=g_id where imie like '%".$imie."%' OR nazwisko like '%".$nazwisko."%'
+				or nrrezerwacja like '%".$rezerwacja."%' or telefon like '%".$telefon."%';";
+			
+			
+				
+				
+				$result = mysqli_query($conn,$sql);
+				
+				if (mysqli_num_rows($result) > 0) {
+    
+				while($row = mysqli_fetch_assoc($result)) {
+				echo $row["imie"]. " " . $row["nazwisko"]."  -  Nr.rezerwacji: \n". $row["nrrezerwacja"]. " Data rezerwacji: ". 
+				$row["datapocz"]. "    do     ". $row["datakon"]."<br>";
+				
+				}
+				} else {
+				echo "Brak danych";
+				}
+
+				
+			
+			
+
+			
+	
 				
                 mysqli_close($conn);
             ?>
 			</p>
 		</div>
-		<div class="footer">
-			<div id="stopki">
-				<div class="stopka1">
-					hotel_support.pl &copy;
-				</div>
-			
-				<div class="stopka3">
-					Tel: 123-456-789
-				</div>
-				<div class="stopka4">
-					Karmazynowa 155/2 
-				</div>
-				<div style="clear: both;"></div>
-			</div>
-			
-		</div>
+		
 		
 	</div>
 	

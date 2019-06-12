@@ -1,0 +1,27 @@
+<?php
+    include_once 'include/connection.php';
+?>
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+
+
+<?php 
+
+
+    $sql = "select * from gosc;";
+    $result = mysqli_query($conn,$sql);
+    $resultCheck = mysqli_num_rows($result);
+
+    if ($resultCheck > 0)
+    {
+        while ($row = mysqli_featch_assoc($result)){
+            echo $row['imie'];
+        }
+    }
+?>
+</body>
+</html>
